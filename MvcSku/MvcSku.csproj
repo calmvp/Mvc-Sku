@@ -183,6 +183,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManufacturerController.cs" />
     <Compile Include="DAL\LibraryContext.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -311,6 +312,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Manufacturer\Index.cshtml" />
+    <Content Include="Views\Manufacturer\Details.cshtml" />
+    <Content Include="Views\Manufacturer\Create.cshtml" />
+    <Content Include="Views\Manufacturer\Edit.cshtml" />
+    <Content Include="Views\Manufacturer\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
