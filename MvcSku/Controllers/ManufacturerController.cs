@@ -17,9 +17,25 @@ namespace MvcSku.Controllers
         //
         // GET: /Manufacturer/
 
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
-            return View(db.Manufacturers.ToList());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name_desc" : "";
+            var manufacturers = from m in db.Manufacturers
+                                select m;
+            if (!String.IsNullOrEmpty(searchString))
+            { 
+              manufacturers = manufacturers.Where(m => m.ManufacturerName.ToUpper().Contains(searchString.ToUpper()));
+            }
+            switch (sortOrder)
+            { 
+                case "Name_desc":
+                    manufacturers = manufacturers.OrderByDescending(m => m.ManufacturerName);
+                    break;
+                default:
+                    manufacturers = manufacturers.OrderBy(m => m.ManufacturerName);
+                    break;
+            }
+            return View(manufacturers.ToList());
         }
 
         //
@@ -140,7 +156,7 @@ namespace MvcSku.Controllers
             {
                 return RedirectToAction("Delete", new { id = id, saveChangesError = true });
             }
-            return RedirectToAction("Index")
+            return RedirectToAction("Index");
         }
         protected override void Dispose(bool disposing)
         {

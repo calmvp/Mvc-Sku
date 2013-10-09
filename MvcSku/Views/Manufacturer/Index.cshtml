@@ -4,15 +4,22 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Manufacturer Library</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm())
+{ 
+   <p>
+       Find By Company Name: @Html.TextBox("SearchString")
+       <input type="submit" value="Search" />
+   </p>
+}
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ManufacturerName)
+            @Html.ActionLink("ManufacturerName", "Index", new {sortOrder = ViewBag.NameSortParm })
         </th>
         <th></th>
     </tr>
