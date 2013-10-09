@@ -48,18 +48,27 @@ namespace MvcSku.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Manufacturer manufacturer)
+        public ActionResult Create(
+            [Bind(Include="ManufacturerName")]
+            Manufacturer manufacturer)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Manufacturers.Add(manufacturer);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Manufacturers.Add(manufacturer);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
-
-            return View(manufacturer);
-        }
-
+            catch (DataException /* dex */)
+   {
+      //Log the error (uncomment dex variable name after DataException and add a line here to write a log.
+      ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+   }
+   return View(manufacturer);
+}
+   
         //
         // GET: /Manufacturer/Edit/5
 
@@ -78,13 +87,21 @@ namespace MvcSku.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Manufacturer manufacturer)
+        public ActionResult Edit([Bind(Include = "ManufacturerId, ManufacturerName")]Manufacturer manufacturer)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(manufacturer).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Entry(manufacturer).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (DataException /* dex */)
+            {
+                //Log the error (uncomment dex variable name after DataException and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
             return View(manufacturer);
         }
@@ -92,8 +109,12 @@ namespace MvcSku.Controllers
         //
         // GET: /Manufacturer/Delete/5
 
-        public ActionResult Delete(int id = 0)
+        public ActionResult Delete(bool? saveChangesError = false, int id = 0)
         {
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
+            }
             Manufacturer manufacturer = db.Manufacturers.Find(id);
             if (manufacturer == null)
             {
@@ -105,16 +126,22 @@ namespace MvcSku.Controllers
         //
         // POST: /Manufacturer/Delete/5
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int id)
         {
-            Manufacturer manufacturer = db.Manufacturers.Find(id);
-            db.Manufacturers.Remove(manufacturer);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                Manufacturer manufacturer = db.Manufacturers.Find(id);
+                db.Manufacturers.Remove(manufacturer);
+                db.SaveChanges();
+            }
+            catch (DataException/* dex */)
+            {
+                return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+            }
+            return RedirectToAction("Index")
         }
-
         protected override void Dispose(bool disposing)
         {
             db.Dispose();
