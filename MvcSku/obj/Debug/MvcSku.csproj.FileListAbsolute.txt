@@ -89,3 +89,4 @@ c:\users\ned\documents\visual studio 2012\Projects\MvcSku\MvcSku\bin\PagedList.d
 c:\users\ned\documents\visual studio 2012\Projects\MvcSku\MvcSku\bin\PagedList.Mvc.dll
 c:\users\ned\documents\visual studio 2012\Projects\MvcSku\MvcSku\bin\PagedList.xml
 c:\users\ned\documents\visual studio 2012\Projects\MvcSku\MvcSku\bin\PagedList.Mvc.xml
+c:\users\ned\documents\visual studio 2012\Projects\MvcSku\MvcSku\obj\Debug\MvcSku.Migrations.Inheritance.resources

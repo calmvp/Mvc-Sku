@@ -199,9 +199,15 @@
     <Compile Include="Migrations\201310090556137_InitialCreate.Designer.cs">
       <DependentUpon>201310090556137_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201310100322562_Inheritance.cs" />
+    <Compile Include="Migrations\201310100322562_Inheritance.Designer.cs">
+      <DependentUpon>201310100322562_Inheritance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Can.cs" />
     <Compile Include="Models\Manufacturer.cs" />
+    <Compile Include="Models\SoftPack.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\Tagging.cs" />
     <Compile Include="Models\Unit.cs" />
@@ -334,6 +340,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201310090556137_InitialCreate.resx">
       <DependentUpon>201310090556137_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310100322562_Inheritance.resx">
+      <DependentUpon>201310100322562_Inheritance.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
