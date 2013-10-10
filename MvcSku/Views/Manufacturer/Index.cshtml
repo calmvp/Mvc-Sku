@@ -1,18 +1,20 @@
-﻿@model IEnumerable<MvcSku.Models.Manufacturer>
+﻿@model PagedList.IPagedList<MvcSku.Models.Manufacturer>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Manufacturers Library";
 }
 
-<h2>Manufacturer Library</h2>
+<h2>Manufacturers</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-@using (Html.BeginForm())
+@using (Html.BeginForm("Index", "Manufacturer", FormMethod.Get))
 { 
    <p>
-       Find By Company Name: @Html.TextBox("SearchString")
+       Find By Company Name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
        <input type="submit" value="Search" />
    </p>
 }
@@ -38,3 +40,7 @@
 }
 
 </table>
+<br />
+Page @(Model.PageCount <Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter }) )

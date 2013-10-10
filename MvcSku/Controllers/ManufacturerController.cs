@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using MvcSku.Models;
 using MvcSku.DAL;
+using PagedList;
 
 namespace MvcSku.Controllers
 {
@@ -17,9 +18,19 @@ namespace MvcSku.Controllers
         //
         // GET: /Manufacturer/
 
-        public ActionResult Index(string sortOrder, string searchString)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page )
         {
+            ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name_desc" : "";
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+
             var manufacturers = from m in db.Manufacturers
                                 select m;
             if (!String.IsNullOrEmpty(searchString))
@@ -35,7 +46,9 @@ namespace MvcSku.Controllers
                     manufacturers = manufacturers.OrderBy(m => m.ManufacturerName);
                     break;
             }
-            return View(manufacturers.ToList());
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(manufacturers.ToPagedList(pageNumber, pageSize));
         }
 
         //

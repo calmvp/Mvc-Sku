@@ -85,3 +85,7 @@ c:\users\ned\documents\visual studio 2012\Projects\MvcSku\MvcSku\obj\Debug\MvcSk
 c:\users\ned\documents\visual studio 2012\Projects\MvcSku\MvcSku\obj\Debug\MvcSku.pdb
 c:\users\ned\documents\visual studio 2012\Projects\MvcSku\MvcSku\obj\Debug\MvcSku.Migrations.InitialCreate.resources
 c:\users\ned\documents\visual studio 2012\Projects\MvcSku\MvcSku\obj\Debug\MvcSku.csproj.GenerateResource.Cache
+c:\users\ned\documents\visual studio 2012\Projects\MvcSku\MvcSku\bin\PagedList.dll
+c:\users\ned\documents\visual studio 2012\Projects\MvcSku\MvcSku\bin\PagedList.Mvc.dll
+c:\users\ned\documents\visual studio 2012\Projects\MvcSku\MvcSku\bin\PagedList.xml
+c:\users\ned\documents\visual studio 2012\Projects\MvcSku\MvcSku\bin\PagedList.Mvc.xml
