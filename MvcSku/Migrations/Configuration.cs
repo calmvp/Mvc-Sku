@@ -36,8 +36,8 @@ namespace MvcSku.Migrations
             var units = new List<Unit>
             {   
                 new Unit { UnitId = 1, UnitName = "Box of Cereal", Height = 12.06M, Width = 8.65M, Depth = 2.10M, Manufacturer = manufacturers.Single(m => m.ManufacturerName == "Post") },
-                new Unit { UnitId = 2, UnitName = "Can o' Soup", Height = 6.26M, Width = 3.34M, Depth = 3.24M, Manufacturer = manufacturers.Single(m => m.ManufacturerName == "Campbell's") },
-                new Unit { UnitId = 3, UnitName = "Soft Pack of Cereal", Height = 24.22M, Width = 20.00M, Depth = 14.00M, Manufacturer = manufacturers.Single(m => m.ManufacturerName == "Kellogg's") }
+                new Can { UnitId = 2, UnitName = "Can o' Soup", Height = 6.26M, Width = 3.34M, Depth = 3.24M, Manufacturer = manufacturers.Single(m => m.ManufacturerName == "Campbell's") },
+                new SoftPack { UnitId = 3, UnitName = "Soft Pack of Cereal", Height = 24.22M, Width = 20.00M, Depth = 14.00M, Manufacturer = manufacturers.Single(m => m.ManufacturerName == "Kellogg's") }
             };
             units.ForEach(u => context.Units.AddOrUpdate(x => x.UnitName, u));
             context.SaveChanges();
