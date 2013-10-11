@@ -32,9 +32,7 @@
             @Html.DisplayFor(modelItem => item.ManufacturerName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ManufacturerId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ManufacturerId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ManufacturerId })
+            @Html.ActionLink("Select", "Details", new { id=item.ManufacturerId }) 
         </td>
     </tr>
 }
