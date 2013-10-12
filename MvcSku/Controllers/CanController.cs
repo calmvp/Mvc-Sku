@@ -18,7 +18,7 @@ namespace MvcSku.Controllers
         // GET: /Can/
 
         public ActionResult Index()
-        {
+        {   
             return View(db.Units.ToList());
         }
 
@@ -40,6 +40,7 @@ namespace MvcSku.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.Manufacturer = db.Manufacturers.Find(Int32.Parse(Request.QueryString["ManufacturerId"]));
             return View();
         }
 
@@ -50,14 +51,10 @@ namespace MvcSku.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Can can)
         {
-            if (ModelState.IsValid)
-            {
-                db.Units.Add(can);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(can);
+            can.Manufacturer = db.Manufacturers.Find(Int32.Parse(Request.QueryString["ManufacturerId"]));
+            db.Units.Add(can);
+            db.SaveChanges();
+            return RedirectToAction("Details", new { id = can.UnitId });
         }
 
         //
@@ -86,7 +83,7 @@ namespace MvcSku.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(can);
+            return RedirectToAction("Details", new { id = can.UnitId });
         }
 
         //
@@ -110,9 +107,10 @@ namespace MvcSku.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Can can = (Can)db.Units.Find(id);
+            var ManuId = can.Manufacturer.ManufacturerId; 
             db.Units.Remove(can);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", new { controller="Manufacturer", id = ManuId } );
         }
 
         protected override void Dispose(bool disposing)

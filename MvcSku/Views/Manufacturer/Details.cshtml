@@ -30,10 +30,18 @@
             @foreach (var item in Model.Units)
             { 
                 <tr>
-
+                    @if (item.DiscriminatorValue.Contains("Can"))
+                    { 
+                      <td>
+                          @Html.ActionLink("Select", "Details", new { controller="Can", id=item.UnitId })
+                      </td>
+                    }
+                    else
+                    {             
                     <td>
                        @Html.ActionLink("Select", "Details", new { controller="Unit", id=item.UnitId })
                     </td>
+                    }
                     <td>
                         @Html.DisplayFor(modelItem => item.UnitName) 
                     </td>
@@ -52,7 +60,8 @@
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Create New Asset", "Create", new { controller="Unit", ManufacturerId = Model.ManufacturerId }) |
+    @Html.ActionLink("Create New Box", "Create", new { controller="Unit", ManufacturerId = Model.ManufacturerId }) |
+    @Html.ActionLink("Create New Can", "Create", new { controller="Can", ManufacturerId = Model.ManufacturerId}) |
     @Html.ActionLink("Edit", "Edit", new { id=Model.ManufacturerId }) |
     @Html.ActionLink("Delete", "Delete", new { id=Model.ManufacturerId }) | 
     @Html.ActionLink("Back to List", "Index")

@@ -23,5 +23,13 @@ namespace MvcSku.Models
         public decimal Depth { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
         public virtual ICollection<Tagging> Taggings { get; set; }
+
+        public string DiscriminatorValue
+        {
+            get
+            {
+                return this.GetType().Name;
+            }
+        }
     }
 }
