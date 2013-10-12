@@ -1,0 +1,44 @@
+﻿@model MvcSku.Models.Unit
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Unit</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UnitName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UnitName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Height)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Height)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Width)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Width)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Depth)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Depth)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.UnitId }) |
+    @Html.ActionLink("Delete", "Delete", new { id=Model.UnitId }) | 
+    @Html.ActionLink("Back to Manufacturer", "Details", new { controller = "Manufacturer", id = Model.Manufacturer.ManufacturerId })
+</p>

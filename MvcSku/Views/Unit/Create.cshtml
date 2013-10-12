@@ -1,0 +1,69 @@
+﻿@model MvcSku.Models.Unit
+
+@{
+    ViewBag.Title = "Create";
+    //Model.Manufacturer = ViewBag.Manufacturer;
+    var ManufacturerId = (int)ViewBag.Manufacturer.ManufacturerId;
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Unit</legend>
+
+        @Html.Hidden("Manufacturer", ManufacturerId)
+
+        
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UnitName)
+        </div>
+
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UnitName)
+            @Html.ValidationMessageFor(model => model.UnitName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Height)
+        </div>
+
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Height)
+            @Html.ValidationMessageFor(model => model.Height)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Width)
+        </div>
+
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Width)
+            @Html.ValidationMessageFor(model => model.Width)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Depth)
+        </div>
+
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Depth)
+            @Html.ValidationMessageFor(model => model.Depth)
+        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

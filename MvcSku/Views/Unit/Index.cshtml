@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MvcSku.Models.Unit>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Height)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Width)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Depth)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Height)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Width)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Depth)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UnitId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UnitId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UnitId })
+        </td>
+    </tr>
+}
+
+</table>
