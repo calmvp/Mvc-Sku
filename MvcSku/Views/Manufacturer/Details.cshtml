@@ -21,6 +21,7 @@
     <div class="display-field">
         <table>
             <tr>
+                <th></th>
                 <th>Type</th>
                 <th>Height</th>
                 <th>Width</th>
@@ -29,6 +30,10 @@
             @foreach (var item in Model.Units)
             { 
                 <tr>
+
+                    <td>
+                       @Html.ActionLink("Select", "Details", new { controller="Unit", id=item.UnitId })
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.UnitName) 
                     </td>
@@ -47,6 +52,8 @@
     </div>
 </fieldset>
 <p>
+    @Html.ActionLink("Create New Asset", "Create", new { controller="Unit", ManufacturerId = Model.ManufacturerId }) |
     @Html.ActionLink("Edit", "Edit", new { id=Model.ManufacturerId }) |
+    @Html.ActionLink("Delete", "Delete", new { id=Model.ManufacturerId }) | 
     @Html.ActionLink("Back to List", "Index")
 </p>
