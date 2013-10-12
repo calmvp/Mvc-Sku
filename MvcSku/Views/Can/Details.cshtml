@@ -46,5 +46,6 @@
 </fieldset>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id=Model.UnitId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Delete", "Delete", new { id=Model.UnitId }) |
+    @Html.ActionLink("Back to Manufacturer", "Details", new {controller="Manufacturer", id=Model.Manufacturer.ManufacturerId})
 </p>
