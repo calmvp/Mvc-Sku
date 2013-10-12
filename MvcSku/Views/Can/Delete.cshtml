@@ -1,13 +1,21 @@
-﻿@model MvcSku.Models.Unit
+﻿@model MvcSku.Models.Can
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Delete";
 }
 
-<h2>Details</h2>
+<h2>Delete</h2>
 
+<h3>Are you sure you want to delete this?</h3>
 <fieldset>
-    <legend>Unit</legend>
+    <legend>Can</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Radius)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Radius)
+    </div>
 
     <div class="display-label">
          @Html.DisplayNameFor(model => model.UnitName)
@@ -37,8 +45,10 @@
         @Html.DisplayFor(model => model.Depth)
     </div>
 </fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.UnitId }) |
-    @Html.ActionLink("Delete", "Delete", new { id=Model.UnitId }) | 
-    @Html.ActionLink("Back to Manufacturer", "Details", new { controller = "Manufacturer", id = Model.Manufacturer.ManufacturerId })
-</p>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

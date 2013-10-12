@@ -188,6 +188,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CanController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManufacturerController.cs" />
     <Compile Include="Controllers\UnitController.cs" />
@@ -336,6 +337,11 @@
     <Content Include="Views\Unit\Create.cshtml" />
     <Content Include="Views\Unit\Edit.cshtml" />
     <Content Include="Views\Unit\Delete.cshtml" />
+    <Content Include="Views\Can\Index.cshtml" />
+    <Content Include="Views\Can\Details.cshtml" />
+    <Content Include="Views\Can\Create.cshtml" />
+    <Content Include="Views\Can\Edit.cshtml" />
+    <Content Include="Views\Can\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
