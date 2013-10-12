@@ -52,6 +52,7 @@
     </div>
 </fieldset>
 <p>
+    @Html.ActionLink("Create New Asset", "Create", new { controller="Unit", ManufacturerId = Model.ManufacturerId }) |
     @Html.ActionLink("Edit", "Edit", new { id=Model.ManufacturerId }) |
     @Html.ActionLink("Delete", "Delete", new { id=Model.ManufacturerId }) | 
     @Html.ActionLink("Back to List", "Index")

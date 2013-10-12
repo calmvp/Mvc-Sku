@@ -40,6 +40,10 @@ namespace MvcSku.Controllers
 
         public ActionResult Create()
         {
+            
+            // do we know the manufacturer_id?
+            // we need to pass it into the view
+            ViewBag.Manufacturer = db.Manufacturers.Find(Int32.Parse(Request.QueryString["ManufacturerId"]));
             return View();
         }
 
@@ -50,14 +54,14 @@ namespace MvcSku.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Unit unit)
         {
-            if (ModelState.IsValid)
-            {
+            unit.Manufacturer = db.Manufacturers.Find(Int32.Parse(Request.QueryString["ManufacturerId"]));
+
+         
                 db.Units.Add(unit);
                 db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            return View(unit);
+
+                return RedirectToAction("Details", new { id = unit.UnitId } );
         }
 
         //
