@@ -10,33 +10,33 @@ using MvcSku.DAL;
 
 namespace MvcSku.Controllers
 {
-    public class CanController : Controller
+    public class SoftPackController : Controller
     {
         private LibraryContext db = new LibraryContext();
 
         //
-        // GET: /Can/
+        // GET: /SoftPack/
 
         public ActionResult Index()
-        {   
+        {
             return View(db.Units.ToList());
         }
 
         //
-        // GET: /Can/Details/5
+        // GET: /SoftPack/Details/5
 
         public ActionResult Details(int id = 0)
         {
-            Can can = (Can)db.Units.Find(id);
-            if (can == null)
+            SoftPack softpack = (SoftPack)db.Units.Find(id);
+            if (softpack == null)
             {
                 return HttpNotFound();
             }
-            return View(can);
+            return View(softpack);
         }
 
         //
-        // GET: /Can/Create
+        // GET: /SoftPack/Create
 
         public ActionResult Create()
         {
@@ -45,72 +45,72 @@ namespace MvcSku.Controllers
         }
 
         //
-        // POST: /Can/Create
+        // POST: /SoftPack/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Can can)
+        public ActionResult Create(SoftPack softpack)
         {
-            can.Manufacturer = db.Manufacturers.Find(Int32.Parse(Request.QueryString["ManufacturerId"]));
-            db.Units.Add(can);
+            softpack.Manufacturer = db.Manufacturers.Find(Int32.Parse(Request.QueryString["ManufacturerId"]));
+            db.Units.Add(softpack);
             db.SaveChanges();
-            return RedirectToAction("Details", new { id = can.UnitId });
+            return RedirectToAction("Details", new { id = softpack.UnitId });
         }
 
         //
-        // GET: /Can/Edit/5
+        // GET: /SoftPack/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
-            Can can = (Can)db.Units.Find(id);
-            if (can == null)
+            SoftPack softpack = (SoftPack)db.Units.Find(id);
+            if (softpack == null)
             {
                 return HttpNotFound();
             }
-            return View(can);
+            return View(softpack);
         }
 
         //
-        // POST: /Can/Edit/5
+        // POST: /SoftPack/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Can can)
+        public ActionResult Edit(SoftPack softpack)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(can).State = EntityState.Modified;
+                db.Entry(softpack).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Details", new { id = can.UnitId });
+                return RedirectToAction("Details", new { id = softpack.UnitId }); ;
             }
-            return RedirectToAction("Details", new { id = can.UnitId });
+            return View(softpack);
         }
 
         //
-        // GET: /Can/Delete/5
+        // GET: /SoftPack/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
-            Can can = (Can)db.Units.Find(id);
-            if (can == null)
+            SoftPack softpack = (SoftPack)db.Units.Find(id);
+            if (softpack == null)
             {
                 return HttpNotFound();
             }
-            return View(can);
+            return View(softpack);
         }
 
         //
-        // POST: /Can/Delete/5
+        // POST: /SoftPack/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Can can = (Can)db.Units.Find(id);
-            var ManuId = can.Manufacturer.ManufacturerId; 
-            db.Units.Remove(can);
+            SoftPack softpack = (SoftPack)db.Units.Find(id);
+            var ManuId = softpack.Manufacturer.ManufacturerId;
+            db.Units.Remove(softpack);
             db.SaveChanges();
-            return RedirectToAction("Details", new { controller="Manufacturer", id = ManuId } );
+            return RedirectToAction("Details", new { controller="Manufacturer", id=ManuId });
         }
 
         protected override void Dispose(bool disposing)

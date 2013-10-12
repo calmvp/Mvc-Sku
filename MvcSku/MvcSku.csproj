@@ -191,6 +191,7 @@
     <Compile Include="Controllers\CanController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManufacturerController.cs" />
+    <Compile Include="Controllers\SoftPackController.cs" />
     <Compile Include="Controllers\UnitController.cs" />
     <Compile Include="DAL\LibraryContext.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -342,6 +343,11 @@
     <Content Include="Views\Can\Create.cshtml" />
     <Content Include="Views\Can\Edit.cshtml" />
     <Content Include="Views\Can\Delete.cshtml" />
+    <Content Include="Views\SoftPack\Index.cshtml" />
+    <Content Include="Views\SoftPack\Details.cshtml" />
+    <Content Include="Views\SoftPack\Create.cshtml" />
+    <Content Include="Views\SoftPack\Edit.cshtml" />
+    <Content Include="Views\SoftPack\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

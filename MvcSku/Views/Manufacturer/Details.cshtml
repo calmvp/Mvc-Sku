@@ -36,6 +36,10 @@
                           @Html.ActionLink("Select", "Details", new { controller="Can", id=item.UnitId })
                       </td>
                     }
+                    else if (item.DiscriminatorValue.Contains("SoftPack"))
+                    {
+                      <td>@Html.ActionLink("Select", "Details", new { controller="SoftPack", id=item.UnitId })</td>
+                    }
                     else
                     {             
                     <td>
@@ -60,8 +64,9 @@
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Create New Box", "Create", new { controller="Unit", ManufacturerId = Model.ManufacturerId }) |
-    @Html.ActionLink("Create New Can", "Create", new { controller="Can", ManufacturerId = Model.ManufacturerId}) |
+    @Html.ActionLink("New Box", "Create", new { controller="Unit", ManufacturerId = Model.ManufacturerId }) |
+    @Html.ActionLink("New Can", "Create", new { controller="Can", ManufacturerId = Model.ManufacturerId}) |
+    @Html.ActionLink("New Soft Pack", "Create", new { controller="SoftPack", ManufacturerId = Model.ManufacturerId }) |
     @Html.ActionLink("Edit", "Edit", new { id=Model.ManufacturerId }) |
     @Html.ActionLink("Delete", "Delete", new { id=Model.ManufacturerId }) | 
     @Html.ActionLink("Back to List", "Index")
