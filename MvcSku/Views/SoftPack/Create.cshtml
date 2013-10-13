@@ -52,7 +52,13 @@
             @Html.EditorFor(model => model.Depth)
             @Html.ValidationMessageFor(model => model.Depth)
         </div>
-
+        <div class="editor-label">
+            Tags
+        </div>
+        
+        <div class="editor-field">
+          <input type="text" name="Tags" />
+        </div>
         <p>
             <input type="submit" value="Create" />
         </p>

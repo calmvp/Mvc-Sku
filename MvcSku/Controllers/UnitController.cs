@@ -41,8 +41,6 @@ namespace MvcSku.Controllers
         public ActionResult Create()
         {
             
-            // do we know the manufacturer_id?
-            // we need to pass it into the view
             ViewBag.Manufacturer = db.Manufacturers.Find(Int32.Parse(Request.QueryString["ManufacturerId"]));
             return View();
         }
@@ -65,13 +63,7 @@ namespace MvcSku.Controllers
                     TagValue = tag[1]
                 }) ;
 
-             // unit.Tags = tagCandidates.ToList();
-            foreach (Tag element in tagCandidates)
-            {
-               unit.Tags.Add(element);
-               element.Units.Add(unit);
-               db.Tags.Add(element);
-            }
+                unit.Tags = tagCandidates.ToList();
                 
                 db.Units.Add(unit);
                 try

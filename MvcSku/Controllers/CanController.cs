@@ -52,6 +52,18 @@ namespace MvcSku.Controllers
         public ActionResult Create(Can can)
         {
             can.Manufacturer = db.Manufacturers.Find(Int32.Parse(Request.QueryString["ManufacturerId"]));
+            var TagArray = Request["Tags"].Split(' ');
+            var Delimeters = new char[] { ':', ' ', ',' };
+
+            var tagCandidates = TagArray.Select(tag => tag.Split(Delimeters, StringSplitOptions.RemoveEmptyEntries))
+                .Select(tag => new Tag
+                {
+                    TagKey = tag[0],
+                    TagValue = tag[1]
+                });
+
+            can.Tags = tagCandidates.ToList();
+            
             db.Units.Add(can);
             db.SaveChanges();
             return RedirectToAction("Details", new { id = can.UnitId });
