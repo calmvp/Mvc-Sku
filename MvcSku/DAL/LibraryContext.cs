@@ -10,7 +10,6 @@ namespace MvcSku.DAL
         public DbSet<Manufacturer> Manufacturers { get; set; }
         public DbSet<Unit> Units { get; set; }
         public DbSet<Tag> Tags { get; set; }
-        public DbSet<Tagging> Taggings { get; set; }
         public DbSet<Can> Cans { get; set; }
         public DbSet<SoftPack> SoftPacks { get; set; }
 

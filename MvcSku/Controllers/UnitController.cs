@@ -55,12 +55,47 @@ namespace MvcSku.Controllers
         public ActionResult Create(Unit unit)
         {
             unit.Manufacturer = db.Manufacturers.Find(Int32.Parse(Request.QueryString["ManufacturerId"]));
+            var TagArray = Request["Tags"].Split(' ');
+            var Delimeters = new char[] { ':', ' ', ',' };
 
-         
+            var tagCandidates = TagArray.Select(tag => tag.Split(Delimeters, StringSplitOptions.RemoveEmptyEntries))
+                .Select(tag => new Tag
+                {
+                    TagKey = tag[0],
+                    TagValue = tag[1]
+                }) ;
+
+             // unit.Tags = tagCandidates.ToList();
+            foreach (Tag element in tagCandidates)
+            {
+               unit.Tags.Add(element);
+               element.Units.Add(unit);
+               db.Tags.Add(element);
+            }
+                
                 db.Units.Add(unit);
-                db.SaveChanges();
-
-
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (System.Data.Entity.Validation.DbEntityValidationException e)
+                {
+                    var outputLines = new List<string>();
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        outputLines.Add(string.Format(
+                            "{0}: Entity of type \"{1}\" in state \"{2}\" has the following validation errors:",
+                            DateTime.Now, eve.Entry.Entity.GetType().Name, eve.Entry.State));
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            outputLines.Add(string.Format(
+                                "- Property: \"{0}\", Error: \"{1}\"",
+                                ve.PropertyName, ve.ErrorMessage));
+                        }
+                    }
+                    System.IO.File.AppendAllLines(@"c:\temp\errors.txt", outputLines);
+                    throw;
+                }
                 return RedirectToAction("Details", new { id = unit.UnitId } );
         }
 

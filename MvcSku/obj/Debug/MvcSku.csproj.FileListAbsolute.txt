@@ -182,3 +182,5 @@ C:\Users\Ned\Documents\Visual Studio 2012\Projects\Mvc-Sku\MvcSku\obj\Debug\MvcS
 C:\Users\Ned\Documents\Visual Studio 2012\Projects\Mvc-Sku\MvcSku\obj\Debug\MvcSku.csproj.GenerateResource.Cache
 C:\Users\Ned\Documents\Visual Studio 2012\Projects\Mvc-Sku\MvcSku\obj\Debug\MvcSku.dll
 C:\Users\Ned\Documents\Visual Studio 2012\Projects\Mvc-Sku\MvcSku\obj\Debug\MvcSku.pdb
+C:\Users\Ned\Documents\Visual Studio 2012\Projects\Mvc-Sku\MvcSku\obj\Debug\MvcSku.Migrations.AddTagsUnitsCollections.resources
+C:\Users\Ned\Documents\Visual Studio 2012\Projects\Mvc-Sku\MvcSku\obj\Debug\MvcSku.Migrations.RemovedTaggings.resources

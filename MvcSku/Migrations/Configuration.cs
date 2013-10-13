@@ -42,24 +42,24 @@ namespace MvcSku.Migrations
             units.ForEach(u => context.Units.AddOrUpdate(x => x.UnitName, u));
             context.SaveChanges();
 
-            var taggings = new List<Tagging>
-            {
-              new Tagging { UnitId = units.Single(s => s.UnitName == "Box of Cereal").UnitId, TagId = tags.Single(c => c.TagValue == "Cheerios").TagId },
-              new Tagging { UnitId = units.Single(s => s.UnitName == "Can o' Soup").UnitId, TagId = tags.Single(c => c.TagValue == "Chicken Noodle").TagId },
-              new Tagging { UnitId = units.Single(s => s.UnitName == "Soft Pack of Cereal").UnitId, TagId = tags.Single(c => c.TagValue == "Corn Flakes").TagId }
-            };
-            foreach (Tagging t in taggings)
-            {
-                var taggingInDataBase = context.Taggings.Where(
-                    s =>
-                         s.Tag.TagId == t.TagId &&
-                         s.Unit.UnitId == t.UnitId).SingleOrDefault();
-                if (taggingInDataBase == null)
-                {
-                    context.Taggings.Add(t);
-                }
-            }
-            context.SaveChanges();
+            //var taggings = new List<Tagging>
+            //{
+              //new Tagging { UnitId = units.Single(s => s.UnitName == "Box of Cereal").UnitId, TagId = tags.Single(c => c.TagValue == "Cheerios").TagId },
+              //new Tagging { UnitId = units.Single(s => s.UnitName == "Can o' Soup").UnitId, TagId = tags.Single(c => c.TagValue == "Chicken Noodle").TagId },
+              //new Tagging { UnitId = units.Single(s => s.UnitName == "Soft Pack of Cereal").UnitId, TagId = tags.Single(c => c.TagValue == "Corn Flakes").TagId }
+            //};
+            //foreach (Tagging t in taggings)
+           // {
+                //var taggingInDataBase = context.Taggings.Where(
+                   // s =>
+                   //      s.Tag.TagId == t.TagId &&
+                 //        s.Unit.UnitId == t.UnitId).SingleOrDefault();
+               // if (taggingInDataBase == null)
+               // {
+                //    context.Taggings.Add(t);
+              //  }
+            //}
+           // context.SaveChanges();
         }
     }
 }

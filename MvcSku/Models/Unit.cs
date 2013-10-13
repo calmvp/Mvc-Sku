@@ -22,7 +22,12 @@ namespace MvcSku.Models
         [Required]
         public decimal Depth { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
-        public virtual ICollection<Tagging> Taggings { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
+
+        public Unit()
+        {
+         this.Tags = new List<Tag>();
+        }
 
         public string DiscriminatorValue
         {
