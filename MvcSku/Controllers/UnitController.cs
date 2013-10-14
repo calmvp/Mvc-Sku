@@ -6,7 +6,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MvcSku.Models;
+using MvcSku.ViewModels;
 using MvcSku.DAL;
+
 
 namespace MvcSku.Controllers
 {
@@ -17,9 +19,17 @@ namespace MvcSku.Controllers
         //
         // GET: /Unit/
 
-        public ActionResult Index()
+        public ActionResult Index(string searchString, string unitTags)
         {
-            return View(db.Units.ToList());
+                var units = from u in db.Units
+                             select u;
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    units = units.Where(s => s.UnitName.Contains(searchString));
+                }
+
+                return View(units);
         }
 
         //
@@ -96,12 +106,34 @@ namespace MvcSku.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            Unit unit = db.Units.Find(id);
+            Unit unit = db.Units
+              .Include(u => u.Tags)
+              .Where(u => u.UnitId == id)
+              .Single();
+
+            PopulateTagsData(unit);
+
             if (unit == null)
             {
                 return HttpNotFound();
             }
             return View(unit);
+        }
+
+        private void PopulateTagsData(Unit unit)
+        {
+            var unitTags = unit.Tags;
+            var viewModel = new List<TagsData>();
+            foreach (var tag in unitTags)
+            {
+                viewModel.Add(new TagsData
+                {
+                    TagId = tag.TagId,
+                    TagKey = tag.TagKey,
+                    TagValue = tag.TagValue
+                });
+            }
+            ViewBag.Tags = viewModel;
         }
 
         //
@@ -110,7 +142,7 @@ namespace MvcSku.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Unit unit)
-        {
+        {   
             if (ModelState.IsValid)
             {
                 db.Entry(unit).State = EntityState.Modified;

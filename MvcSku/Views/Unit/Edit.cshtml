@@ -46,7 +46,23 @@
             @Html.EditorFor(model => model.Depth)
             @Html.ValidationMessageFor(model => model.Depth)
         </div>
+        <div class="editor-field">
+            <table>
+                <tr> Tags:
+                    @{
+                       List<MvcSku.ViewModels.TagsData> tags = ViewBag.Tags;
+                       foreach (var tag in tags) { 
+                          <td>
+                             <input type="text"
+                                name="editTags"
+                                value="@tag.TagKey : @tag.TagValue" />
 
+                         </td> 
+                         }
+                        }
+                </tr>
+          </table>
+        </div>
         <p>
             <input type="submit" value="Save" />
         </p>

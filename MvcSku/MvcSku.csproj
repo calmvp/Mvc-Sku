@@ -218,6 +218,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Can.cs" />
     <Compile Include="Models\Manufacturer.cs" />
+    <Compile Include="ViewModels\TagsData.cs" />
     <Compile Include="Views\Manufacturer\SoftPack.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\Unit.cs" />

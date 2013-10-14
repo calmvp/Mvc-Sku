@@ -18,6 +18,16 @@
        <input type="submit" value="Search" />
    </p>
 }
+
+<p> 
+
+     
+     @using (Html.BeginForm("Index", "Unit", FormMethod.Get)){    
+         <p> Search by Unit Name: @Html.TextBox("SearchString")  
+         <input type="submit" value="Search" /></p> 
+        } 
+</p>
+
 <table>
     <tr>
         <th>

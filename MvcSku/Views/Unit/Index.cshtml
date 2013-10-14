@@ -1,14 +1,12 @@
 ﻿@model IEnumerable<MvcSku.Models.Unit>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Search";
 }
 
-<h2>Index</h2>
+<h2>Search Results</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@Html.ActionLink("Back to Index", "Index", new { controller = "Manufacturer" })
 <table>
     <tr>
         <th>
@@ -40,11 +38,23 @@
         <td>
             @Html.DisplayFor(modelItem => item.Depth)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UnitId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.UnitId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UnitId })
-        </td>
+                    @if (item.DiscriminatorValue.Contains("Can"))
+                    { 
+                      <td>
+                          @Html.ActionLink("Select", "Details", new { controller="Can", id=item.UnitId })
+                      </td>
+                    }
+                    else if (item.DiscriminatorValue.Contains("SoftPack"))
+                    {
+                      <td>@Html.ActionLink("Select", "Details", new { controller="SoftPack", id=item.UnitId })</td>
+                    }
+                    else
+                    {             
+                    <td>
+                       @Html.ActionLink("Select", "Details", new { controller="Unit", id=item.UnitId })
+                    </td>
+                    }
+
     </tr>
 }
 
