@@ -1,0 +1,26 @@
+﻿@model MvcSku.Models.Manufacturer
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+<p class="error">@ViewBag.ErrorMessage</p>
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Manufacturer</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ManufacturerName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ManufacturerName)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

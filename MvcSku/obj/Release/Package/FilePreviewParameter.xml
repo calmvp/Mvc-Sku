@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="incontextlibrary" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Ned\\Documents\\Visual\ Studio\ 2012\\Projects\\Mvc-Sku\\MvcSku\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Ned\\Documents\\Visual\ Studio\ 2012\\Projects\\Mvc-Sku\\MvcSku\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="LibraryContext-Web.config Connection String" description="" value="Data Source=tcp:jfab44fzej.database.windows.net,1433;Initial Catalog=MvcSkuDB;User Id=calmvp@jfab44fzej;Password=Strych9life" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Ned\\Documents\\Visual\ Studio\ 2012\\Projects\\Mvc-Sku\\MvcSku\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='LibraryContext']/@connectionString" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." value="Data Source=(LocalDb)\v11.0;Initial Catalog=aspnet-MvcSku-20131009011223;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\aspnet-MvcSku-20131009011223.mdf" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Ned\\Documents\\Visual\ Studio\ 2012\\Projects\\Mvc-Sku\\MvcSku\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

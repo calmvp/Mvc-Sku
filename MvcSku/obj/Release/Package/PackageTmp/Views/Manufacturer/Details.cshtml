@@ -1,0 +1,73 @@
+﻿@model MvcSku.Models.Manufacturer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Manufacturer</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ManufacturerName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ManufacturerName)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.Units)
+    </div>
+    <div class="display-field">
+        <table>
+            <tr>
+                <th></th>
+                <th>Type</th>
+                <th>Height</th>
+                <th>Width</th>
+                <th>Depth</th>
+            </tr>
+            @foreach (var item in Model.Units)
+            { 
+                <tr>
+                    @if (item.DiscriminatorValue.Contains("Can"))
+                    { 
+                      <td>
+                          @Html.ActionLink("Select", "Details", new { controller="Can", id=item.UnitId })
+                      </td>
+                    }
+                    else if (item.DiscriminatorValue.Contains("SoftPack"))
+                    {
+                      <td>@Html.ActionLink("Select", "Details", new { controller="SoftPack", id=item.UnitId })</td>
+                    }
+                    else
+                    {             
+                    <td>
+                       @Html.ActionLink("Select", "Details", new { controller="Unit", id=item.UnitId })
+                    </td>
+                    }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UnitName) 
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Height) In
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Width) In
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Depth) In
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("New Box", "Create", new { controller="Unit", ManufacturerId = Model.ManufacturerId }) |
+    @Html.ActionLink("New Can", "Create", new { controller="Can", ManufacturerId = Model.ManufacturerId}) |
+    @Html.ActionLink("New Soft Pack", "Create", new { controller="SoftPack", ManufacturerId = Model.ManufacturerId }) |
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ManufacturerId }) |
+    @Html.ActionLink("Delete", "Delete", new { id=Model.ManufacturerId }) | 
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,54 @@
+﻿@model PagedList.IPagedList<MvcSku.Models.Manufacturer>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Manufacturers Library";
+}
+
+<h2>Manufacturers</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm("Index", "Manufacturer", FormMethod.Get))
+{ 
+   <p>
+       Find By Company Name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+       <input type="submit" value="Search" />
+   </p>
+}
+
+<p> 
+
+     
+     @using (Html.BeginForm("Index", "Unit", FormMethod.Get)){    
+         <p> Search by Unit Name: @Html.TextBox("SearchString")  
+         <input type="submit" value="Search" /></p> 
+        } 
+</p>
+
+<table>
+    <tr>
+        <th>
+            @Html.ActionLink("ManufacturerName", "Index", new {sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ManufacturerName)
+        </td>
+        <td>
+            @Html.ActionLink("Select", "Details", new { id=item.ManufacturerId }) 
+        </td>
+    </tr>
+}
+
+</table>
+<br />
+Page @(Model.PageCount <Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter }) )

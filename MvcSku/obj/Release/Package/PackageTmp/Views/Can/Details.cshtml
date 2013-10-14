@@ -1,0 +1,61 @@
+﻿@model MvcSku.Models.Can
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Can</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Radius)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Radius)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UnitName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UnitName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Height)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Height)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Width)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Width)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Depth)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Depth)
+    </div>
+        @if (Model.Tags != null)
+    {    
+    <div class="display-field">
+        <div class ="tag-declaration">Tags:</div>
+        @foreach (var item in Model.Tags)
+        { 
+            <div class ="tag-display">@Html.DisplayFor(modelItem => item.TagKey) : @Html.DisplayFor(modelItem => item.TagValue)</div>
+        }
+    </div>
+    }
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.UnitId }) |
+    @Html.ActionLink("Delete", "Delete", new { id=Model.UnitId }) |
+    @Html.ActionLink("Back to Manufacturer", "Details", new {controller="Manufacturer", id=Model.Manufacturer.ManufacturerId})
+</p>

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<MvcSku.Models.Unit>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search Results</h2>
+
+@Html.ActionLink("Back to Index", "Index", new { controller = "Manufacturer" })
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Height)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Width)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Depth)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Height)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Width)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Depth)
+        </td>
+                    @if (item.DiscriminatorValue.Contains("Can"))
+                    { 
+                      <td>
+                          @Html.ActionLink("Select", "Details", new { controller="Can", id=item.UnitId })
+                      </td>
+                    }
+                    else if (item.DiscriminatorValue.Contains("SoftPack"))
+                    {
+                      <td>@Html.ActionLink("Select", "Details", new { controller="SoftPack", id=item.UnitId })</td>
+                    }
+                    else
+                    {             
+                    <td>
+                       @Html.ActionLink("Select", "Details", new { controller="Unit", id=item.UnitId })
+                    </td>
+                    }
+
+    </tr>
+}
+
+</table>
